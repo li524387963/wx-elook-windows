@@ -1,0 +1,38 @@
+<view class='page'style="height:{{screenHeight+'px'}}">
+<view class='topLine'></view>
+<view class='topview'>
+
+
+
+<view class='emailView'style="width:{{screenWidth+'px'}}">
+<text>邮箱地址</text>
+<input class='emailInput' bindinput='emailBindinput' type="text"style="width:{{screenWidth-80-12-12+'px'}}"></input>
+</view>
+<view class='lineView'style="width:{{width+'px'}}"></view>
+
+<view class='arealView'style="width:{{screenWidth+'px'}}">
+<text>所在省市区</text>
+ <picker mode="region" bindchange="bindRegionChange" value="{{region}}" style="width:{{screenWidth-80-12-12+'px'}}" class='picker'>{{region[0]}} {{region[1]}} {{region[2]}}
+  </picker>
+</view>
+<view class='lineView'style="width:{{width+'px'}}"></view>
+
+<view class='emailView'style="width:{{screenWidth+'px'}}">
+<text>详细地址</text>
+<input class='addressInput' bindinput='addressBindinput' type="text"style="width:{{screenWidth-80-12-12+'px'}}"></input>
+</view>
+<view class='bottomLine'></view>
+
+</view>
+
+
+
+
+
+<view class='registerBT'style="width:{{width-12+'px'}}" bindtap='registerAction' >保存</view>
+
+<view class='loginBT'style="width:{{width-12+'px'}}" bindtap='loginAction' >跳过,直接登录</view>
+
+
+
+</view>

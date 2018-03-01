@@ -1,0 +1,77 @@
+.scanView{
+  width: 100%;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+ 
+  align-items: center;
+  background-color: rgb(248, 248, 248)
+}
+.scanView image{
+  padding-top: 37px;
+  width: 60px;
+  height: 60px;
+}
+.scanView text{
+  padding-top: 15px;
+  text-align: center;
+  width: 180px;
+  font-size: 12px;
+  color: rgb(128, 128, 128)
+
+}
+.ranqiView{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+ 
+}
+.ranqiImg{
+  padding-left: 10px;
+  width: 43px;
+  height: 43px;
+}
+.ranqiView text{
+  text-align: left;
+   padding-left: 10px; 
+  font-size: 16px;
+  width: 80px;
+}
+
+ .arrowimgView{
+   display: -webkit-flex;
+  flex-direction: column;
+  /* align-items:center;  */
+  
+ 
+  
+
+  
+  
+  /* //padding-left: 20px ; */
+  
+  
+}
+.arrowimgView image{
+
+  margin-right: 10px;
+   width: 12px;  
+  height: 24px;
+  
+   
+ 
+} 
+.bottomView{
+   width: 100%-64px;  
+  height: 1px;
+  background-color: rgb(248, 248, 248);
+  margin-left: 64px;
+ 
+}
+.bottom{
+   width: 100%;  
+  height: 1px;
+  background-color: rgb(248, 248, 248);
+}

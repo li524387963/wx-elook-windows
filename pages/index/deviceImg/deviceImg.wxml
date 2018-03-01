@@ -1,0 +1,7 @@
+<!--pages/index/deviceImg/deviceImg.wxml-->
+<view class='imgView'>
+
+  <image src='{{imgurl}}' class='image' style="width:{{width+'px'}};height:{{height+'px'}}"></image>
+  <text  class='text'>{{dataset.value}}</text>
+
+</view>

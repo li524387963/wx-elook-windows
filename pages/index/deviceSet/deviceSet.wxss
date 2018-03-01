@@ -1,0 +1,151 @@
+/* pages/index/deviceSet/deviceSet.wxss */
+.page{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ background-color: white;
+  
+}
+.topView{
+   width: 100%;
+  display: flex;
+  height: 130px;
+  flex-direction: row;
+  align-items: center;
+
+}
+.topView image{
+  padding-left: 13px;
+   width: 75px;
+   height: 75px;
+}
+.textView{
+  padding-left: 13px;
+   display: flex;
+  flex-direction: column;
+ 
+}
+.bigText{
+  font-size: 18px;
+  text-align: left;
+}
+.smallText{
+  padding-top: 11px;
+  font-size: 14px;
+  text-align: left;
+  color: rgb(153, 153, 153);
+}
+.blineView{
+   height: 1px;
+  background-color: rgb(219, 219, 219)
+}
+.numView{
+ 
+   display: flex;
+   height: 42px;
+  flex-direction: row;
+  background-color: white; 
+  align-items: center;
+ 
+}
+
+.numView text{
+  width: 100px;
+  padding-left: 13px;
+  color: black;
+  font-size: 16px;
+  text-align: left;
+
+}
+.stateView{
+  display: flex;
+   height: 42px;
+  flex-direction: row;
+  background-color: white; 
+  align-items: center;
+}
+.stateView text{
+  width: 200px;
+  padding-left: 13px;
+  color: black;
+  font-size: 16px;
+  text-align: left;
+
+}
+.numInput{
+ 
+  text-align: right;
+  font-size: 16px;
+  color: rgb(102, 102, 102);
+}
+.lineView{
+  margin-left: 12px;
+  height: 1px;
+  background-color: rgb(219, 219, 219)
+}
+.switch{
+
+  width: 50px;
+}
+.locaView{
+  display: flex;
+   height: 42px;
+  flex-direction: row;
+  background-color: white; 
+  align-items: center;
+}
+.locaView image{
+  width: 15px;
+  height: 20px;
+  padding-left: 13px;
+}
+.locaView input{
+  padding-left: 13px;
+  text-align: left;
+  font-size: 16px;
+  color: rgb(102, 102, 102);
+}
+.rowImg{
+  padding-left: 12px;
+   width: 12px;  
+  height: 18px;
+  
+}
+.delayView{
+  display: flex;
+   height: 42px;
+  flex-direction: row;
+  background-color: white; 
+  align-items: center;
+}
+.delayView text{
+  width: 140px;
+  padding-left: 13px;
+  color: black;
+  font-size: 16px;
+  text-align: left;
+
+}
+.picker{
+  text-align: right;
+  font-size: 16px;
+  width: 200px;
+  padding-left: 12px;
+}
+.setBT{
+ 
+   margin-top:60px;
+  margin-left: 12px;
+  background-color: rgb(41, 182, 216);
+  height: 40px;
+  width: 195px;
+   border-radius: 6px;
+   display : flex ; 
+    flex-flow : row; 
+   justify-content: center;
+     align-items: center;
+     color: white;
+     font-size: 17px;
+     border: 1px solid rgb(41, 182, 216);  
+
+}

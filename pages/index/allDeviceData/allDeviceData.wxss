@@ -1,0 +1,102 @@
+.queryView{
+  width: 100%;
+  background-color:white;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee; 
+   align-items: center;
+}
+.startView{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.startText{
+  font-size: 13px;
+  padding-left: 12px;
+  padding-top: 5px;
+  color: rgb(153, 153, 153)
+}
+.startPicker{
+  font-size: 16px;
+  color: rgb(17, 135, 165);
+   padding-left: 12px;
+}
+.lineView{
+  height: 32px;
+  width: 1px;
+  background-color: rgb(219, 219, 219);
+  padding-right: 1px;
+}
+.endView{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.endText{
+  font-size: 13px;
+  padding-left: 12px;
+  padding-top: 5px;
+  color: rgb(153, 153, 153)
+}
+.endPicker{
+  font-size: 16px;
+  padding-left: 12px;
+  color: rgb(17, 135, 165)
+}
+.buttonView{
+  align-items: center;
+  padding-right: 12px;
+}
+.buttonView button{
+  background-color: rgb(17, 135, 165);
+  color: white;
+  height: 30px;
+  width: 75px;
+  font-size: 14px;
+}
+.scrollView{
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: white;
+  height: 300px;
+}
+.itemView{
+   width: 100%;
+  background-color:white;
+  height: 60px;
+  display: flex;
+  
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee; 
+   align-items: center;
+}
+.timeText {
+  font-size: 16px;
+  color:rgb(102, 102, 102);
+  padding-left: 12px;
+}
+.valueView{
+
+  display: flex;
+  flex-direction: row;
+ 
+  align-items: center;
+  height: 100%;
+}
+.value{
+  font-size: 20px;
+  color:rgb(247, 171, 0);
+  padding-right: 20px;
+   text-align: center;
+}
+.ListIcon{
+  height: 20px;
+  width: 20px;
+  padding-right: 12px;
+}

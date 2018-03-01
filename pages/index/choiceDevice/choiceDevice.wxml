@@ -1,0 +1,34 @@
+<view class='scanView' bindtap='scanTap'>
+  <image src='../../../images/choose_btn@3x.png' class='chooseImg'></image>
+  <text >直接扫描连接设备</text>
+</view>
+<view class='ranqiView' bindtap='scanTap'>
+<image src='../../../images/choose_icon_1@3x.png' class='ranqiImg'></image>
+<text style='padding-right: {{left}}px;'>水表读表器</text>
+<view class='arrowimgView'><image src='../../../images/形状-14-拷贝-3@3x.png' ></image></view>
+
+</view>
+<view class='bottomView'></view>
+<view class='ranqiView' bindtap='scanTap'>
+<image src='../../../images/choose_icon_2@3x.png' class='ranqiImg'></image>
+<text style='padding-right: {{left}}px;'>燃气读表器</text>
+<view class='arrowimgView'><image src='../../../images/形状-14-拷贝-3@3x.png' ></image></view>
+
+
+</view>
+<view class='bottomView'></view>
+<view class='ranqiView' >
+<image src='../../../images/choose_icon_3@3x.png' class='ranqiImg'></image>
+<text style='color:rgb(153,153,153);font-size:16px;width:190px;padding-right: {{left1}}px;'>燃气检查报警器(即将上线)</text>
+<view class='arrowimgView'><image src='../../../images/形状-14-拷贝-3@3x.png' ></image></view>
+
+</view>
+<view class='bottomView'></view>
+<view class='ranqiView' >
+<image src='../../../images/choose_icon_4@3x.png' class='ranqiImg'></image>
+<text style='color:rgb(153,153,153);font-size:16px;width:210px;padding-right: {{left2}}px;'>室内空气质量检测(即将上线)</text>
+<view class='arrowimgView'><image src='../../../images/形状-14-拷贝-3@3x.png' ></image></view>
+
+
+</view>
+<view class='bottom'></view>

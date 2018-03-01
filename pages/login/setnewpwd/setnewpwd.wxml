@@ -1,0 +1,16 @@
+<view class='page'style="height:{{screenHeight+'px'}}">
+<view class='topLine'></view>
+<view class='topview'>
+<view class='phoneView'style="width:{{screenWidth+'px'}}">
+<text>设置新密码</text>
+<input class='phoneInput' bindinput='phoneBindinput' type="text" password='true'></input>
+</view>
+<view class='bottomLine'></view>
+
+</view>
+
+<view class='registerBT'style="width:{{width-12+'px'}}" bindtap='changeAction' >确认修改密码</view>
+
+
+</view>
+

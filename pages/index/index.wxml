@@ -1,0 +1,77 @@
+ <view class='backView' style="height:{{screenHeight+20 +'px'}}">
+<swiper indicator-dots="true"
+  autoplay="true" class='swiper'
+  indicator-active-color='white'
+  duration='300'style="height: {{screenHeight*170/667+'px'}}" bindchange='swiperChange' >
+  <block wx:for="{{adImageUrl}}"wx:key='swiper'>
+    <swiper-item>
+      <image src="{{item.easy_adv_picurl}}" class="slide-image"  bindtap='swiptap'/>
+    </swiper-item>
+  </block>
+</swiper>
+<view class='headView'style="height: 40px">
+  <view class='headblueView'> </view>
+  <text class='headText'>已监测设备</text>
+</view>
+<scroll-view class='scrollView' scroll-y='true' bindscrolltolower='bindscrolltolower'>
+<!-- <navigator url='deviceDetail/deviceDetail?deviceId={{item.device_device_id}}'wx:for='{{infoone}}' wx:key='scroll' class='navigator'> -->
+  <view class='itemView'  wx:for='{{infoone}}' wx:key='scroll' data-model='{{item}}' bindtap='navigatorAction'
+ bindtouchstart='touchstart' bindtouchend='touchend' 
+ bindlongtap='bindlongtap'
+ >
+ <view class='leftView'>
+   <image src='../../images/shuibiaoicon.png' class='shuibiaoicon'></image>
+   <text wx:if="{{item.device_alias ==null}}" class='aliastext'> 暂无昵称 </text>
+   <text wx:else class='aliastext'>{{item.device_alias}}</text>
+  </view>
+   <view class='rightView'>
+   <text class='deviceIDtext'>水表 {{ item.device_device_id}}</text>
+   <text class='yesvalue'> 昨日使用:{{item.yesterday}} 一周总数:{{item.weekvalue}}</text>
+   <view class='numberView' style="flex-direction:row;">
+<image src='../../images/home_bg_text@3x.png' class='bgtextimg'></image>
+    <text class='bgtext'>当前读数</text>
+    <view class='number'>
+  <view class='num1'>
+  <image src='../../images/home_bg_number@3x.png'></image>
+<text class='numtext'>{{item.access_value[0]}}</text>
+  </view>
+   <view class='num1'>
+  <image src='../../images/home_bg_number@3x.png'></image>
+<text>{{item.access_value[1]}}</text>
+  </view>
+   <view class='num1'>
+  <image src='../../images/home_bg_number@3x.png'></image>
+<text>{{item.access_value[2]}}</text>
+  </view>
+   <view class='num1'>
+  <image src='../../images/home_bg_number@3x.png'></image>
+<text>{{item.access_value[3]}}</text>
+     </view>
+    </view>
+   </view>
+   <view class='bottomView'>
+   <image src='../../images/home_icon_1@3x.png' class='locaimg'></image>
+   <text wx:if="{{item.device_alias ==null}}" class='locatext' style="width:{{screenWidth/5+5+'px'}}"> 暂无位置信息 </text>
+   <text wx:else class='locatext'style="width:{{screenWidth/5+5+'px'}}">{{item.device_location}}</text>
+    <view class='stateView' wx:if='{{item.device_dev_state!=5&&item.device_dev_state!=9}}'>
+      <image src='../../images/home_icon_orange@3x.png'></image>
+      <text id='{{item.device_dev_state}}' catchtap='stateTap' wx:if='{{item.device_dev_state==4}}'data-model='{{item}}'>设备无法解析</text>
+      <text id='{{item.device_dev_state}}' catchtap='stateTap'wx:elif='{{item.device_dev_state==6}}'data-model='{{item}}'>解析数值不匹配</text>
+      <text id='{{item.device_dev_state}}' catchtap='stateTap'wx:elif='{{item.device_dev_state==7}}'data-model='{{item}}'>无数据上报</text>
+      <text id='{{item.device_dev_state}}' catchtap='stateTap' wx:else data-model='{{item}}'>设备出现异常</text>    
+         </view>
+      <view wx:else class='stateView'>
+              <image src=''></image>
+      <text style='color:white' > 设备运行正常   </text>
+      </view>
+
+    </view>
+   </view>
+  <image src='../../images/形状-14-拷贝-3@3x.png' class='arrowimg'></image>
+  
+ </view> 
+  
+<!-- </navigator> -->
+</scroll-view>
+<view class='addview'> <image src='../../images/home_btn_add@3x.png' class='addimg' bindtap='addAction'></image></view>
+</view>

@@ -1,0 +1,30 @@
+<!--pages/index/bindFail/bindFail.wxml-->
+<view class='backView' style="height:{{screenHeight+'px'}}">
+<view class='whiteView'style="height:{{screenHeight*480/667+'px'}};width:{{screenWidth*274/375+'px'}}">
+ <view class='imageView' style="height:{{screenHeight*260/667/26*24+'px'}};width:{{screenWidth*260/375+'px'}}">
+ <image src='../../../images/error.png'style="height:{{screenHeight*260/667/26*24+'px'}};width:{{screenWidth*260/375+'px'}}" wx:if="{{errpic==null}}">
+ </image>
+
+  <image src='{{errpicurl}}'style="height:{{screenHeight*260/667/26*24+'px'}};width:{{screenWidth*260/375+'px'}}" wx:else>
+ </image>
+ 
+ </view>
+
+ <view class='loseBigLB'>
+ <text>
+ {{loseText}}
+ </text>
+ 
+ </view>
+
+<view class='loseResonLB'>
+<text>
+请检查设备是否正确安装
+</text>
+</view>
+<view class='reBindBT' style="width:{{screenWidth*200/375+'px'}};" bindtap='rebindAction'>重新绑定</view>
+</view>
+
+
+
+</view>

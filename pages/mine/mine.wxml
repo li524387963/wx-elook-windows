@@ -1,0 +1,76 @@
+<!--pages/mine/mine.wxml-->
+<!-- <view class='loginBT'style="width:60px;" bindtap='exitAction'>退出</view> -->
+<view class='page' style="height:{{screenHeight+'px'}}">
+  <view class='bgView' style="height:{{screenHeight*156/667+'px'}}">
+    <view class='bg1View'style="height:{{screenHeight*116/667+'px'}}" >
+  
+      <view class='userView'>
+        <view class='imageView' style="height:{{screenHeight*70/667+'px'}};width:{{screenHeight*70/667+'px'}}">
+        <image class='userImg' src="{{userInfo.avatarUrl}}" style="height:{{screenHeight*60/667+'px'}};width:{{screenHeight*60/667+'px'}}"></image>
+         </view>
+        <text class='userText'>{{name}}</text>
+
+       </view>
+    
+      <view class='rightView' bindtap='editUserAction'>
+      <image src='../../images/user_btn.png'></image>
+      </view>
+
+      
+    
+    </view>
+     
+
+       <view class='bg2View'style="height:{{screenHeight*40/667+'px'}}">
+     <image src='../../images/user_bg2.png' style="height:{{screenHeight*40/667+'px'}}"></image>
+    </view>
+  </view>
+  <view class='centenView'>
+
+  <view class='topLine'></view>
+
+  <view class='classView' style="width:{{screenWidth+'px'}}" bindtap='problemAction'>
+  <image src='../../images/user_icon1@3x.png' class='leftImg'></image>
+  <text>意见反馈</text>
+  <image src='../../images/形状-14-拷贝-3@3x.png' class='rowImg' style='padding-left: {{left}}px;'></image>
+   </view>
+   <view class='line' style="width:{{screenWidth-10+'px'}}"></view>
+
+     <view class='classView' style="width:{{screenWidth+'px'}}" bindtap='bindpwd'>
+  <image src='../../images/user_icon2@3x.png' class='leftImg'></image>
+  <text>修改密码</text>
+  <image src='../../images/形状-14-拷贝-3@3x.png' class='rowImg' style='padding-left: {{left}}px;'></image>
+   </view>
+   <view class='line' style="width:{{screenWidth-10+'px'}}"></view>
+
+     <view class='classView' style="width:{{screenWidth+'px'}}" bindtap='aboutTap'>
+  <image src='../../images/user_icon3@3x.png' class='leftImg'></image>
+  <text>关于我们</text>
+  <image src='../../images/形状-14-拷贝-3@3x.png' class='rowImg' style='padding-left: {{left}}px;'></image>
+   </view>
+   <view class='line' style="width:{{screenWidth-10+'px'}}"></view>
+
+     <view class='classView' style="width:{{screenWidth+'px'}}" >
+  <image src='../../images/user_icon4@3x.png' class='leftImg'></image>
+  <text>客服电话</text>
+  <text style='padding-left: {{phoneleft}}px;width:100px' bindtap='phoneTap'>{{serPhone}}</text>
+   </view>
+   <!-- <view class='line' style="width:{{screenWidth-10+'px'}}"></view>
+
+     <view class='classView' style="width:{{screenWidth+'px'}}">
+  <image src='../../images/user_icon5@3x.png' class='leftImg'></image>
+  <text>常见问题</text>
+   </view> -->
+ 
+    <view class='topLine'></view>
+
+
+ <view class='exitBT'style="width:{{width-12+'px'}}" bindtap='exitAction'>退出</view> 
+   </view>
+
+</view>
+
+
+
+
+

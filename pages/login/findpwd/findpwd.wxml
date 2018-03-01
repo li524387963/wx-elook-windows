@@ -1,0 +1,24 @@
+<!--pages/login/register/register.wxml-->
+<view class='page'style="height:{{screenHeight+'px'}}">
+<view class='topLine'></view>
+<view class='topview'>
+<view class='phoneView'style="width:{{screenWidth+'px'}}">
+<text>手机号</text>
+<input class='phoneInput' bindinput='phoneBindinput' type="number" value='{{Del}}'></input>
+</view>
+<view class='lineView'style="width:{{width+'px'}}"></view>
+<view class='phoneView' style="width:{{screenWidth+'px'}}">
+<text class='codeText'>验证码</text>
+<input class='codeInput' bindinput='codebind' type="number" style="width:{{width-80-12-104+'px'}}" value='{{code}}'></input>
+<view class='getView' style='background-color:{{backcolor}}' catchtap='getCode'>
+<text>{{timeText}}</text>
+</view>
+</view>
+<view class='bottomLine'></view>
+
+</view>
+
+<view class='registerBT'style="width:{{width-12+'px'}}" bindtap='nextAction' >下一步</view>
+
+
+</view>

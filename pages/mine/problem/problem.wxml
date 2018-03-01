@@ -1,0 +1,4 @@
+<view class='page'style="height:{{screenHeight+'px'}}">
+<textarea class='input'placeholder='欢迎使用ELOOK家庭智能设备,有问题可以随时给小E留言哦~' bindinput='inputAction' style="width:{{width-12 - 12+'px'}}" value='{{value}}'></textarea>
+<view class='registerBT'style="width:{{width-12+'px'}}" bindtap='subAction' >提交</view>
+</view>

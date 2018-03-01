@@ -1,0 +1,12 @@
+<!--pages/index/configDevice/configDevice.wxml-->
+<!-- <text>pages/index/configDevice/configDevice.wxml</text> -->
+<view class='page'style="height:{{screenHeight+'px'}}">
+<view class='imgView'>
+ <image src='{{imgSrc}}'style="padding-top: {{screenHeight*120/667 -64+'px'}}"></image>
+ <text>{{text}}</text>
+<progress percent="{{percent}}" show-info style="width:{{width+'px'}}" class='progress' stroke-width="25"  />
+<!-- <view class='startBT'style="width:150px" bindtap='startAction' >开始配置</view> -->
+<button class='button' bindtap='startAction' disabled='{{disabled}}' style="width:200px" loading="{{loading}}" type=''>{{btText}}</button>
+</view>
+
+</view>

@@ -1,0 +1,34 @@
+<!--pages/login/register/register.wxml-->
+<view class='page'style="height:{{screenHeight+'px'}}">
+<view class='topLine'></view>
+<view class='topview'>
+<view class='phoneView'style="width:{{screenWidth+'px'}}">
+<text>手机号</text>
+<input class='phoneInput' bindinput='phoneBindinput' type="number"></input>
+</view>
+<view class='lineView'style="width:{{width+'px'}}"></view>
+<view class='phoneView' style="width:{{screenWidth+'px'}}">
+<text class='codeText'>验证码</text>
+<input class='codeInput' bindinput='codebind' type="number" style="width:{{width-80-12-104+'px'}}" value='{{code}}'></input>
+<view class='getView' style='background-color:{{backcolor}}' catchtap='getCode'>
+<text>{{timeText}}</text>
+</view>
+</view>
+<view class='lineView'style="width:{{width+'px'}}"></view>
+
+<view class='phoneView'style="width:{{screenWidth+'px'}}">
+<text>设置密码</text>
+<input class='pwdInput' bindinput='pwdbind'password='{{password}}'style="width:{{width-80-12-30+'px'}}" type='text'></input>
+<image src='{{imgsrc}}'  class='lookImg'></image>
+</view>
+<view class='bottomLine'></view>
+
+</view>
+
+<view class='registerBT'style="width:{{width-12+'px'}}" bindtap='registerAction' >注册</view>
+<view class='agreeview' style="width:{{width-12+'px'}}">
+<image src='../../../images/login_icon_3_pre@3x.png'></image>
+<text class='whiteText'>我已阅读并同意</text>
+<text class='yellowText'>用户注册协议</text>
+</view>
+</view>

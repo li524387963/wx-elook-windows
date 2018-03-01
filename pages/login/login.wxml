@@ -1,0 +1,30 @@
+<!--pages/login/login.wxml-->
+<view class='backView' style="height:{{screenHeight+'px'}}">
+
+<view class='loginView' style="width:{{width+'px'}};padding-top:{{screenHeight*160/667+'px'}}">
+
+ <view class='phoneView'style="width:{{width+'px'}}">
+  <image src='../../images/login_icon_1@3x.png'></image>
+  <text>手机号</text>
+  <input class='phoneInput' bindinput='phoneBindinput' type="number"></input>
+ </view>
+ <view style="width:{{width+'px'}}" class='bottomView'></view>
+ 
+ <view class='passView'style="width:{{width+'px'}}">
+  <image src='../../images/login_icon_2@3x.png'></image>
+  <text>密码</text>
+  <input class='phoneInput' bindinput='nameBindinput' password="true"></input>
+ </view>
+ <view style="width:{{width+'px'}}" class='bottomView'></view>
+ <view class='registerView' style="width:{{width+'px'}}">
+ <text class='registerText' bindtap='register'>注册帐号</text>
+ <text class='findText'bindtap='find'>找回密码</text>
+ </view>
+</view>
+<view class='loginBT'style="width:{{width+'px'}}" bindtap='loginAction'>登录</view>
+<view class='agreeview' style="width:{{width+'px'}}">
+<image src='../../images/login_icon_3_pre@3x.png'></image>
+<text class='whiteText'>我已阅读并同意</text>
+<text class='yellowText'>用户注册协议</text>
+</view>
+</view>

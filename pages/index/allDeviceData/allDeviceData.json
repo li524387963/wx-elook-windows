@@ -1,0 +1,5 @@
+{
+  "navigationBarTitleText": "全部列表",
+ "enablePullDownRefresh": true,
+  "backgroundColor": "#007F9F"
+}

@@ -1,0 +1,11 @@
+<!--pages/mine/about/about.wxml-->
+<view class='page'style="height:{{screenHeight+'px'}}"> 
+<view class='imgView'>
+<image src='../../../images/512.png'></image>
+<text class='bText'>Elook家庭智能设备</text>
+<text class='vText'>版本号:{{version}}</text>
+
+
+</view>
+
+</view>

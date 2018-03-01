@@ -1,0 +1,60 @@
+<!--pages/index/deviceSet/deviceSet.wxml-->
+<view class='page' style="height:{{screenHeight+'px'}}">
+<view class='topView'>
+  <image src='../../../images/组-1@2x@2x.png'></image>
+  <view class='textView'>
+    <text class='bigText'>ELOOK设备 {{deviceModel.device_device_id}}</text>
+    <text class='smallText'>初次绑定时间: {{reg_time}}</text>
+  </view>
+</view>
+
+<view class='blineView'style="width:{{screenWidth  +'px'}}"></view>
+
+<view class='numView'style="width:{{screenWidth+'px'}}">
+<text>水表官方编号</text>
+<input class='numInput' bindinput='numBindinput' type="text"style="width:{{screenWidth-100-12-12+'px'}}"  value='{{deviceModel.device_device_id}}' disabled='true'></input>
+</view>
+
+<view class='lineView'style="width:{{width+'px'}}"></view>
+
+<view class='numView'style="width:{{screenWidth+'px'}}">
+<text>设备昵称</text>
+<input class='numInput' bindinput='nameBindinput' type="text"style="width:{{screenWidth-100-12-12+'px'}}"  placeholder='{{alisPlace}}' wx:if="{{alisStr==null}}"></input>
+
+<input class='numInput' bindinput='nameBindinput' type="text"style="width:{{screenWidth-100-12-12+'px'}}"  value='{{alis}}' wx:else></input>
+</view>
+
+<view class='lineView'style="width:{{width+'px'}}"></view>
+
+<view class='stateView'style="width:{{screenWidth+'px'}}">
+<text >每日数据是否显示图片</text>
+ <switch checked='{{checked}}' bindchange='switchLimit' class='switch' style="padding-left:{{screenWidth-200-12-12-50+'px'}}" ></switch>
+</view>
+
+<view class='lineView'style="width:{{width+'px'}}"></view>
+
+<view class='locaView'style="width:{{screenWidth+'px'}}">
+<image src='../../../images/形状-9-拷贝@2x.png'></image>
+<input class='locaInput' bindfocus='locaBindinput' type="text"style="width:{{screenWidth-15-12-12-12-12-12+'px'}}"    value='{{location}}'></input>
+<image src='../../../images/形状-14-拷贝-3@3x.png' class='rowImg' ></image>
+</view>
+
+<view class='lineView'style="width:{{width+'px'}}"></view>
+
+<view class='delayView'style="width:{{screenWidth+'px'}}">
+<text >显示水表读数频率</text>
+  <!-- <picker bindchange="bindPickerChange" value="{{objectArray[0].name}}" range="{{objectArray}}" class='picker'>{{objectArray[index].name}}
+  </picker>  -->
+ 
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{delayArray}}" >
+    <view class="picker" style="width:{{screenWidth-140-12-12-12-12-12+'px'}}">{{delayArray[index]}}
+    </view>
+  </picker>
+  
+ <image src='../../../images/形状-14-拷贝-3@3x.png' class='rowImg' ></image>
+</view>
+<view class='blineView'style="width:{{screenWidth  +'px'}}"></view>
+
+<view class='setBT'style="width:{{screenWidth-12-12+'px'}}" bindtap='setAction' >设置</view>
+
+</view>

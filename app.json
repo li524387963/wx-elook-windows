@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/index/choiceDevice/choiceDevice",
+    "pages/index/allDeviceData/allDeviceData",
+    "pages/index/deviceImg/deviceImg",
+    "pages/index/deviceDetail/deviceDetail",
+    "pages/index/deviceInfo/deviceInfo",
+    "pages/login/register/register",
+    "pages/mine/mine",
+    "pages/login/addInfo/addInfo",
+    "pages/login/findpwd/findpwd",
+    "pages/login/setnewpwd/setnewpwd",
+    "pages/index/configDevice/configDevice",
+    "pages/index/bindSuccess/bindSuccess",
+    "pages/index/bindFail/bindFail",
+    "pages/mine/UserInfo/UserInfo",
+    "pages/mine/problem/problem",
+    "pages/mine/about/about",
+    "pages/index/deviceSet/deviceSet",
+    "pages/index/map/map",
+    "pages/scan/scan"
+  ],
+  "window": { 
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#007F9F",
+    "navigationBarTitleText": "ELook",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "toolbar/tab_home@3x.png",
+        "selectedIconPath": "toolbar/tab_home_pre@3x.png"
+      },
+      {
+        "pagePath": "pages/scan/scan",
+        "text": "添加",
+        "iconPath": "images/choose_btn@3x.png",
+        "selectedIconPath": "images/choose_btn@3x.png"
+       
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "toolbar/tab_my@3x.png",
+        "selectedIconPath": "toolbar/tab_my_pre@3x.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+
+<view class='queryView'>
+  <view class='startView'>
+    <text class='startText'>起始日期</text>
+    <picker mode="date" class='startPicker'value="{{startDate}}" start="2016-01-01" end="2020-01-01" bindchange="bindDateChange">
+       {{startDate}}
+    </picker>
+  </view>
+   <view class='lineView'></view>
+  <view class='endView'>
+    <text class='endText'>终止日期</text>
+    <picker mode="date" class='endPicker'value="{{endDate}}"bindchange="endDateChange" start="2016-01-01" end="2020-01-01">{{endDate}}</picker>
+  </view>
+  <view class='buttonView'>
+  <button class='button' bindtap='bindtap'>查询</button>
+  </view>
+</view>
+<scroll-view class='scrollView' scroll-y='true' style="height: {{scrollHeight+'px'}}" bindscrolltolower='bindscrolltolower'>
+<block wx:for="{{infoone}}" wx:key="scrollView">
+
+<view bindtap='tap' data-newurl='{{item.access_new_url}}'data-timesto='{{item.timesto}}'data-value='{{item.access_value}}' class='itemView'>
+<text class='timeText'>{{item.timesto}}</text>
+<view class='valueView'>
+  <view class='value'>
+    {{item.access_value}} ㎡
+  </view> 
+  <image src='../../../images/List_icon@3x.png'wx:if='{{item.access_new_url==null}}' class='ListIcon'></image>
+   <image src='../../../images/List_icon_pre@3x.png' wx:else class='ListIcon'></image>  
+</view>
+</view>
+</block>
+</scroll-view>
+

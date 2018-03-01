@@ -1,0 +1,12 @@
+<!--pages/index/deviceInfo/deviceInfo.wxml-->
+
+<view class='page'style="height:{{screenHeight+'px'}}">
+<view class='topView'>
+<image src='../../../images/Binding_logo@3x.png'></image>
+<text class='tyepeText'>{{typeText}}</text>
+<text class='idText'>{{typeIdText}}</text>
+</view>
+<view  bindtap='bindView'class='bindView' >立即绑定设备</view>
+<view class='sacnView' bindtap='scanTap'>重新扫描</view>
+</view>
+

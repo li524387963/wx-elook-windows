@@ -1,0 +1,86 @@
+<view class='page'style="height:{{screenHeight+'px'}}">
+<view class="canvasView">
+<view class='topView'>
+<view class="segmentedControl">
+    <block wx:for="{{radioValues}}"wx:key='segment'>
+        <text data-index="{{index}}" bindtap="indexChanged" class="{{clazz[index]}}">{{item.value}}</text>
+    </block>   
+</view>
+</view>
+<canvas canvas-id="bgCanvas" class="bgcanvas">
+ <canvas canvas-id="areaCanvas" class="canvas" bindtouchstart="touchHandler" hidden='{{areaHide}}'>
+</canvas>
+<canvas canvas-id="columnCanvas" class="canvas"hidden='{{columnHide}}' >
+ </canvas>
+<canvas canvas-id="monthCanvas" class="canvas"hidden='{{monthHide}}' >
+ </canvas>
+<canvas canvas-id="yearCanvas" class="canvas"hidden='{{yearHide}}' >
+ </canvas>
+</canvas>
+<view class='bottomView'>
+<view bindtap='lookAllTap' class='lookAll' >查看全部</view>
+<!-- <view bindtap='setTap' class='setView' >设置</view> -->
+</view>
+</view>
+<view class='yellowView'wx:if="{{deviceModel.device_dev_state!=5}}">
+<view class='stateView'>
+<text class='stateText'wx:if='{{deviceModel.device_dev_state==4}}'>解析失败,请重新连接
+</text>
+<text class='stateText'wx:elif='{{deviceModel.device_dev_state==6}}'>数值不匹配,请重新连接
+</text>
+<text class='stateText'wx:elif='{{deviceModel.device_dev_state==0}}'>等待配置,请重新连接
+</text>
+<text class='stateText'wx:elif='{{deviceModel.device_dev_state==1}}'>设备未配置,请重新连接
+</text>
+<text class='stateText'wx:elif='{{deviceModel.device_dev_state==2}}'>连接服务器失败,请重新连接
+</text>
+<text class='stateText'wx:elif='{{deviceModel.device_dev_state==7}}'>设备无数据上报,请重新连接
+</text>
+<text class='stateText'wx:else>设备异常,请重新连接
+</text>
+</view>
+
+<view bindtap='bindTap' class='bindView' style="margin-left:{{width+'px'}};">重新连接</view>
+</view>
+
+<!-- <view class='warnView'>
+ <view class='limitView'>
+ <text class='leftText'>上限提醒</text>
+ <text class='switchText' style="width:{{screenWidth - 12-80-10-10-50-12 +'px'}}">1天用量超过30</text>
+ <switch checked='true' bindchange='switchLimit' class='switch'  ></switch>
+ </view>
+ <view class='lineView'style="width:{{screenWidth - 12 +'px'}}"></view>
+
+   <view class='limitView'>
+ <text class='leftText'>无使用提醒</text>
+ <text class='switchText' style="width:{{screenWidth - 12-80-10-10-50-12 +'px'}}">3日无数字变化</text>
+ <switch checked='true' bindchange='switchLimit' class='switch'  ></switch>
+ </view>
+ <view class='blineView'style="width:{{screenWidth  +'px'}}"></view>
+
+ <view class='addView'>
+<image src='../../../images/添加新提醒@2x.png'></image>
+ </view>
+</view>
+ 
+<view class='notiView'>
+
+<view class='limitnotiView'>
+<image src='../../../images/home_icon_orange@3x.png'></image>
+<text> 好几天没提醒</text>
+</view>
+
+ <view class='lineView'style="width:{{screenWidth - 12 +'px'}}"></view>
+
+<view class='limitnotiView'>
+<image src='../../../images/home_icon_orange@3x.png'></image>
+<text> 好几天没提醒</text>
+</view>
+
+<view class='blineView'style="width:{{screenWidth  +'px'}}"></view> -->
+
+ <!-- </view>   -->
+
+<view class='setBT'style="width:{{screenWidth-12-12+'px'}}" bindtap='setAction' >设置</view>
+
+</view>

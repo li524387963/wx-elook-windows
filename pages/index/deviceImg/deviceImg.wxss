@@ -1,0 +1,23 @@
+/* pages/index/deviceImg/deviceImg.wxss */
+.imgView{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.imageView{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.image{
+  padding-top: 20px;
+ align-content: center;
+  
+}
+.text{
+   align-content: center;
+   font-size: 30px;
+    padding-top: 20px;
+}
