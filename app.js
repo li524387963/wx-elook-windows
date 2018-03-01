@@ -1,4 +1,4 @@
-//app.js
+//app.js-WINDOWS
 App({
   onShow:function(){
     wx.getSystemInfo({
