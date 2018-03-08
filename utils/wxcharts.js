@@ -264,6 +264,7 @@ function getDataRange(minData, maxData) {
  
     var limit = 0;
     var range = maxData - minData;
+    
     if (range >= 10000) {
         limit = 1000;
     } else if (range >= 1000) {
@@ -280,6 +281,7 @@ function getDataRange(minData, maxData) {
     } else {
         limit = 0.01;
     }
+
     return {
         minRange: findRange(minData, 'lower', limit),
         maxRange: findRange(maxData, 'upper', limit)
@@ -708,7 +710,7 @@ function getYAxisTextList(series, opts, config) {
    
 
     var range = [];
-    var eachRange = (maxRange - minRange) / config.yAxisSplit;
+    var eachRange = (maxRange - minRange) / config.yAxisSplit*5/4;
 
     for (var i = 0; i <= config.yAxisSplit; i++) {
       if(minRange<0){
@@ -1008,6 +1010,7 @@ function drawToolTipSplitLine(offsetX, opts, config, context) {
 }
 //drawToolTip
 function drawToolTip(textList, offset, opts, config, context) {
+  console.log(textList)
     var legendWidth = 0;
     var legendMarginRight = 5;
     var arrowWidth = 8;
@@ -1055,14 +1058,27 @@ function drawToolTip(textList, offset, opts, config, context) {
     // context.setGlobalAlpha(1);
 
   textList.forEach(function (item, index) {
+   
     context.beginPath();
     context.setFillStyle(item.color);
-    var startX = offset.x + 17;
+    var startX = offset.x - 28;
     var startY = offset.y + (config.toolTipLineHeight - config.fontSize) / 2 + config.toolTipLineHeight * index + config.toolTipPadding;
+    var bglength = 53;
     if (isOverRightBorder) {
       startX = offset.x - toolTipWidth - arrowWidth + 2 * config.toolTipPadding + 20;
     }
-    context.drawImage('../../../images/data_tooltip@3x.png', offset.x-28, offset.y-30, 53, 35)
+    
+    if (item.text.length > 2) {
+//context.drawImage('../../../images/data_tooltip@3x.png', offset.x - 38, offset.y - 30, 73, 35)
+  var startX = offset.x - 38;
+  var bglength = 73;
+
+    }
+    if(item.text.length==5){
+      var startX = offset.x - 42;
+      var bglength = 83;
+    }
+    context.drawImage('../../../images/data_tooltip@3x.png', startX, offset.y - 30, bglength, 35)
     context.stroke();
     context.closePath();
 
@@ -1086,26 +1102,48 @@ function drawToolTip(textList, offset, opts, config, context) {
     context.setFontSize(15);
     context.setFillStyle('#ffffff');
     textList.forEach(function (item, index) {
+     
+      
         var startX = offset.x + arrowWidth + 2 * config.toolTipPadding + legendWidth + legendMarginRight;
         if (isOverRightBorder) {
             startX = offset.x - toolTipWidth - arrowWidth + 2 * config.toolTipPadding + +legendWidth + legendMarginRight;
         }
         var startY = offset.y + (config.toolTipLineHeight - config.fontSize) / 2 + config.toolTipLineHeight * index + config.toolTipPadding;
-       
-        context.fillText(item.text, startX-37, startY + config.fontSize-25);
+       var tStartX = startX-37;
+        if (item.text.length > 2) {
+          var tStartX = startX - 37-10;
+        }
+        context.fillText(item.text, tStartX, startY + config.fontSize-25);
     });
     context.stroke();
     context.closePath();
     //绘制图片
   textList.forEach(function (item, index) {
+    
     context.beginPath();
     context.setFillStyle(item.color);
+    console.log(item.text.length)
     var startX = offset.x + arrowWidth + 2 * config.toolTipPadding+20;
     var startY = offset.y + (config.toolTipLineHeight - config.fontSize) / 2 + config.toolTipLineHeight * index + config.toolTipPadding;
+    if (item.text.length >2){
+      var startX = offset.x + arrowWidth + 2 * config.toolTipPadding + 30;
+     
+    }
+    
     if (isOverRightBorder) {
       startX = offset.x - toolTipWidth - arrowWidth + 2 * config.toolTipPadding+20;
     }
+    if (item.text.length == 5) {
+      var startX = offset.x + arrowWidth + 2 * config.toolTipPadding + 40;
+    }
+    
+    if (item.text.length > 5){
+
+    }else{
+
+    
     context.drawImage('../../../images/data_icon@3x.png', startX-33, startY-29, 18, 18)
+    }
     context.stroke();
     context.closePath();
 
@@ -1113,6 +1151,7 @@ function drawToolTip(textList, offset, opts, config, context) {
 
   //绘制坐标蓝点图片
   textList.forEach(function (item, index) {
+    
     context.beginPath();
     context.setFillStyle(item.color);
     

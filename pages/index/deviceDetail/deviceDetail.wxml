@@ -22,7 +22,8 @@
 <!-- <view bindtap='setTap' class='setView' >设置</view> -->
 </view>
 </view>
-<view class='yellowView'wx:if="{{deviceModel.device_dev_state!=5}}">
+<!-- 增加重新绑定按钮 wx:if="{{deviceModel.device_dev_state!=5&&deviceModel.device_dev_state!=9}}"-->
+<view class='yellowView'>
 <view class='stateView'>
 <text class='stateText'wx:if='{{deviceModel.device_dev_state==4}}'>解析失败,请重新连接
 </text>

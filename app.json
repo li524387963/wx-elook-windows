@@ -13,7 +13,7 @@
     "pages/login/findpwd/findpwd",
     "pages/login/setnewpwd/setnewpwd",
     "pages/index/configDevice/configDevice",
-    "pages/index/bindSuccess/bindSuccess",
+    
     "pages/index/bindFail/bindFail",
     "pages/mine/UserInfo/UserInfo",
     "pages/mine/problem/problem",

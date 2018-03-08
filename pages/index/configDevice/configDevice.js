@@ -244,7 +244,8 @@ Page({
 
       that.data.oneCount++;
       that.setData({ oneCount: that.data.oneCount })
-      if (that.data.oneCount > 20) {
+      //测试延迟加长
+      if (that.data.oneCount > 200) {
         //超时
         clearInterval(that.data.stateOneTimer)
         that.bindFail();
@@ -352,7 +353,8 @@ Page({
 
 
       that.setData({ getStateCount: that.data.getStateCount })
-      if (that.data.getStateCount > 24) {
+      //测试延迟加长
+      if (that.data.getStateCount > 240) {
         clearInterval(that.data.getStateTimer)
         //超时
         that.bindFail();
@@ -374,6 +376,7 @@ Page({
       method: "POST",
       data: that.data.deviceModel.device_device_id + '1',
       success: function (res) {
+        console.log(res.data)
 
 
         var dataStr = res.data.substr(2, 1)
@@ -435,8 +438,8 @@ Page({
      text: "解析成功", percent: 100,})
     wx.navigateTo({
     //  url: '../bindSuccess/bindSuccess',
-      url: '../deviceSet/deviceSet?deviceid=' + this.data.deviceid,
-      url: '../deviceSet/deviceSet?deviceid=' + this.data.deviceid + '&page=' + 0,
+    //  url: '../deviceSet/deviceSet?deviceid=' + this.data.deviceid,
+      url: '../deviceSet/deviceSet?deviceid=' + this.data.deviceModel.device_device_id + '&page=' + 0,
       success: function () {
         that.setData({
           disabled: false, btText: '开始配置', oneCount: 0,
@@ -454,7 +457,7 @@ Page({
       text: "解析失败", percent: 100,
     })
     wx.navigateTo({
-      url: '../bindFail/bindFail?deviceid=' + that.data.deviceModel.device_device_id,
+      url: '../bindFail/bindFail?deviceid=' + that.data.deviceModel.device_device_id + '&page=' + 0,
       success:function(){
         that.setData({
            disabled: false, btText: '开始配置', oneCount: 0,

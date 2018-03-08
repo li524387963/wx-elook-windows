@@ -118,7 +118,7 @@ Page({
        that.setData({
          alisStr: alisStr})
        if(alisStr==null){
-         var alis = 'ELOOK' + res.data.UserInfo.info.device_device_id.substr(5,4)
+         var alis =  res.data.UserInfo.info.device_device_id.substr(5,4)
          var alisPlace = alis +'(可修改)'
          that.setData({ alisPlace: alisPlace, alis: alis})
 
@@ -243,9 +243,17 @@ Page({
 
 
     if (this.data.pay_id == this.data.deviceModel.device_pay_id && this.data.alis == this.data.deviceModel.device_alias && this.data.upl_state == this.data.deviceModel.device_upl_state && this.data.location == this.data.deviceModel.device_location && this.data.up_delay == this.data.deviceModel.device_up_delay){
-      wx.navigateBack({
-        delta: 1
-      })
+
+      if (this.data.page == 1) {
+        wx.navigateBack({
+          delta: 1
+        })
+      } else {
+        wx.switchTab({
+          url: '../index',
+        })
+      }
+     
 
     }else{
       if (this.data.pay_id == this.data.deviceModel.device_pay_id && this.data.alis == this.data.deviceModel.device_alias && this.data.upl_state == this.data.deviceModel.device_upl_state && this.data.location == this.data.deviceModel.device_location && this.data.up_delay != this.data.deviceModel.device_up_delay){

@@ -14,7 +14,9 @@ Page({
     loseText:'设备异常',
     errpic:'',
     errpicurl:'',
-    deviceid:''
+    deviceid:'',
+    page:'',
+    deviceModel:{},
 
   },
 
@@ -22,7 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({ deviceid: options.deviceid});
+    this.setData({ deviceid: options.deviceid, page: options.page});
       console.log(options)
       var data = { deviceid: this.data.deviceid }
       this.requestdeviceModel(deviceselect_URL, data)
@@ -47,6 +49,7 @@ Page({
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
         console.log(res)
+        that.setData({ deviceModel: res.data.UserInfo.info });
         var errpic = res.data.UserInfo.info.device_dev_url_errpic;
         if (errpic==null){
           console.log(errpic)
@@ -82,9 +85,17 @@ Page({
 
   },
   rebindAction:function(){
-    wx.navigateBack({
-      
-    })
+    let deviceModel = JSON.stringify(this.data.deviceModel);
+    if(this.data.page==1){
+      wx.navigateTo({
+        url: '../configDevice/configDevice?deviceModel=' + deviceModel,
+      })
+    }else{
+      wx.navigateBack({
+
+      })
+    }
+   
   },
 
   /**

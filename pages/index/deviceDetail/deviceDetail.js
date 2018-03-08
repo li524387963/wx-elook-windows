@@ -3,8 +3,10 @@ var util = require('../../../utils/util.js');
 var app = getApp();
 var areaChart = null;
 var windowWidth = getApp().globalData.screenWidth;
+var screenHeight = getApp().globalData.screenHeight;
 var columnChart = null;
-var reportmsg_URL = app.globalData.reportmsg_URL
+var reportmsg_URL = app.globalData.reportmsg_URL;
+var setDeviceState_URL = getApp().globalData.setDeviceState_URL;
 var chartData = {
   main: {
 
@@ -22,6 +24,7 @@ Page({
     width: windowWidth - 12 - 200 - 80-12 ,
     windowWidth: 320,
     screenWidth: windowWidth,
+    screenHeight: screenHeight,
     
     areaHide: false,
     columnHide: false,
@@ -111,11 +114,72 @@ Page({
   },
   bindTap:function(){
     var deviceModel = JSON.stringify(this.data.deviceModel)
+    
     // wx.navigateTo({
-    //   url: '../configDevice/configDevice?deviceModel=' + deviceModel,
+    //   url: '../bindFail/bindFail?deviceid=' + this.data.deviceModel.device_device_id + '&page=' + 1,
     // })
-    wx.navigateTo({
-      url: '../bindFail/bindFail?deviceid=' + this.data.deviceModel.device_device_id,
+    //重新设置2 继续绑定
+    this.setStateAction();
+
+  },
+  setStateAction: function () {
+    var that = this
+    wx.showLoading({
+      title: '设置中...',
+      icon: "loading",
+      duration: 10000
+    })
+    wx.request({
+
+      url: setDeviceState_URL,
+      header: {
+        'content-type': "application/x-www-form-urlencoded"
+      },
+      method: "POST",
+      data: that.data.deviceModel.device_device_id + '12',
+      success: function (res) {
+        wx.hideLoading();
+        wx.hideNavigationBarLoading() //完成停止加载
+        wx.stopPullDownRefresh() //停止下拉刷新
+
+        clearInterval(that.data.stateOneTimer)
+
+        var dataStr = res.data.substr(2, 1)
+        console.log(dataStr)
+        if (dataStr === 'E') {
+          //设备不存在
+
+          wx.showToast({
+            title: '设备不存在',
+            image: "../../../images/home_icon_orange@3x.png",
+            duration: 2000
+          });
+
+
+
+        } else {
+        wx.navigateTo({
+       url: '../bindFail/bindFail?deviceid=' + that.data.deviceModel.device_device_id + '&page=' + 1,
+     })
+
+
+        }
+
+
+      },
+
+      fail: function () {
+        wx.hideLoading();
+        wx.hideNavigationBarLoading() //完成停止加载
+        wx.stopPullDownRefresh() //停止下拉刷新
+        clearInterval(that.data.stateOneTimer)
+        wx.showToast({
+          title: '网络连接失败',
+          image: "../../../images/home_icon_orange@3x.png",
+          duration: 2000
+        });
+      }
+
     })
 
 
@@ -244,11 +308,13 @@ Page({
       type: 'area',
       background: 'red',
       categories: this.data.dayDate,
+      
       animation: true,
       
       series: [{
 
         data: this.data.dayvalue,
+        //data: [9, 88, 889, 4321, 98765,-66666,-99999],
       
         format: function (val) {
           return val.toFixed(0);
@@ -301,6 +367,7 @@ Page({
 
         color: 'white',
         data: this.data.weekvalue,
+   
         format: function (val, name) {
           return val.toFixed(0);
         }
@@ -344,6 +411,7 @@ Page({
 
         color: 'white',
         data: this.data.yearvalue,
+      
         format: function (val, name) {
           return val.toFixed(0);
         }
@@ -356,7 +424,7 @@ Page({
         gridColor: 'white',
         titleFontColor: '#f7a35c',
         min: 0,
-        max:max/4+max,
+        max:max,
        
       },
       xAxis: {
@@ -386,6 +454,7 @@ Page({
 
         color: 'white',
         data:  this.data.monthvalue,
+      
         format: function (val, name) {
           return val.toFixed(0);
         }

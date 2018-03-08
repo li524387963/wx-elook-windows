@@ -111,7 +111,7 @@ Page({
           console.log(res.data.UserInfo.ret)
 
           for (var i = 0; i < res.data.UserInfo.ret.infoone.length; i++){
-            res.data.UserInfo.ret.infoone[i].access_value = '0000'
+            res.data.UserInfo.ret.infoone[i].access_value = '00000'
             res.data.UserInfo.ret.infoone[i].yesterday = '无'
             res.data.UserInfo.ret.infoone[i].weekvalue = '无'
             for (var j = 0; j < res.data.UserInfo.ret.infotwo.length; j++) {
@@ -137,21 +137,26 @@ Page({
 
                   case 1:
 
-                    res.data.UserInfo.ret.infoone[i].access_value = '000' + res.data.UserInfo.ret.infoone[i].access_value
+                    res.data.UserInfo.ret.infoone[i].access_value = '0000' + res.data.UserInfo.ret.infoone[i].access_value
 
                     break;
                   case 2:
 
-                    res.data.UserInfo.ret.infoone[i].access_value = '00' + res.data.UserInfo.ret.infoone[i].access_value
+                    res.data.UserInfo.ret.infoone[i].access_value = '000' + res.data.UserInfo.ret.infoone[i].access_value
 
                     break;
                   case 3:
-                    res.data.UserInfo.ret.infoone[i].access_value = '0' + res.data.UserInfo.ret.infoone[i].access_value
+                    res.data.UserInfo.ret.infoone[i].access_value = '00' + res.data.UserInfo.ret.infoone[i].access_value
 
                     break;
                   case 4:
 
-                    res.data.UserInfo.ret.infoone[i].access_value = res.data.UserInfo.ret.infoone[i].access_value
+                    res.data.UserInfo.ret.infoone[i].access_value = '0'+res.data.UserInfo.ret.infoone[i].access_value
+
+                    break;
+                  case 5:
+
+                    res.data.UserInfo.ret.infoone[i].access_value =  res.data.UserInfo.ret.infoone[i].access_value
 
                     break;
                 }

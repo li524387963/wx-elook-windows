@@ -22,7 +22,7 @@ Page({
       success: (res) => {
         var type = res.result.substring(0, 1);
         console.log(res.result.substring(0, 1))
-        if (res.result.length === 9 && (type == 1 || type == 2)) {
+        if (res.result.length === 9 && (type == 1 || type == 2 || type == 3)) {
           wx.navigateTo({
             url: '../index/deviceInfo/deviceInfo?deviceid=' + res.result,
           })

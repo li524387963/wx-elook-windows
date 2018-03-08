@@ -47,6 +47,11 @@
   <image src='../../images/home_bg_number@3x.png'></image>
 <text>{{item.access_value[3]}}</text>
      </view>
+ <view class='num1'>
+  <image src='../../images/home_bg_number@3x.png'></image>
+<text>{{item.access_value[4]}}</text>
+  </view>
+
     </view>
    </view>
    <view class='bottomView'>
