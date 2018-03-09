@@ -37,7 +37,7 @@
 </text>
 <text class='stateText'wx:elif='{{deviceModel.device_dev_state==7}}'>设备无数据上报,请重新连接
 </text>
-<text class='stateText'wx:else>设备异常,请重新连接
+<text class='stateText'wx:else>设备正常
 </text>
 </view>
 

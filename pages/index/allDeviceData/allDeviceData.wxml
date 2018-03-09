@@ -22,7 +22,7 @@
 <text class='timeText'>{{item.timesto}}</text>
 <view class='valueView'>
   <view class='value'>
-    {{item.access_value}} ㎡
+    {{item.access_value}} m³
   </view> 
   <image src='../../../images/List_icon@3x.png'wx:if='{{item.access_new_url==null}}' class='ListIcon'></image>
    <image src='../../../images/List_icon_pre@3x.png' wx:else class='ListIcon'></image>  

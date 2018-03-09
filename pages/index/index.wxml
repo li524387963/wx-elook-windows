@@ -18,6 +18,7 @@
   <view class='itemView'  wx:for='{{infoone}}' wx:key='scroll' data-model='{{item}}' bindtap='navigatorAction'
  bindtouchstart='touchstart' bindtouchend='touchend' 
  bindlongtap='bindlongtap'
+ 
  >
  <view class='leftView'>
    <image src='../../images/shuibiaoicon.png' class='shuibiaoicon'></image>

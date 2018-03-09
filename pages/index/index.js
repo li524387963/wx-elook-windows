@@ -107,6 +107,12 @@ Page({
             icon: "success",
             duration: 2000
           })
+          that.setData({
+            infotwo: [],
+            infoone: [],
+            pagenum: 0,
+
+          })
         } else {
           console.log(res.data.UserInfo.ret)
 
@@ -305,7 +311,8 @@ Page({
     wx.vibrateLong({
       
     })
-    var deviceid = res.currentTarget.dataset.deviceid;
+    var deviceid = res.currentTarget.dataset.model.device_device_id;
+    console.log(deviceid)
    var that = this
     
     wx.showModal({

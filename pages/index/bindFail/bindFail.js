@@ -17,6 +17,7 @@ Page({
     deviceid:'',
     page:'',
     deviceModel:{},
+    imgArr:[],
 
   },
 

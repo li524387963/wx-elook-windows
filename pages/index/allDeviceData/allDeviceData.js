@@ -20,6 +20,7 @@ Page({
     maxDate:'',
     select:false,
     info:[],
+    imgArr: [],
 
     
   },
@@ -93,6 +94,11 @@ Page({
           for (var i = 0; i < res.data.UserInfo.ret.infoone.length; i++) {
             that.data.infoone[i].timesto = formatTime(res.data.UserInfo.ret.infoone[i].access_time, 'Y-M-D h:m:s')
             that.data.infoone[i].dateto = formatTime(res.data.UserInfo.ret.infoone[i].access_time, 'Y-M-D')
+            
+           if (that.data.infoone[i].access_new_url!=null){
+           
+            that.data.imgArr.push(that.data.infoone[i])
+          }
           };
           that.setData({
             infoone: that.data.infoone,
@@ -100,7 +106,8 @@ Page({
             startDate: that.data.infoone[that.data.infoone.length - 1].dateto,
 
           });
-          console.log(that.data.infoone)
+         
+          console.log(that.data.infoone, that.data.imgArr)
         }
       }
 
@@ -164,10 +171,21 @@ Page({
     //    newUrl: newUrl,
     //    eid:e.currentTarget.dataset.eid
     // };
+    var imgIndex ;
+   this.data.imgArr.forEach(function (value,index){
+      
+     if (value.access_new_url ==newUrl){
+        
+          imgIndex = index
+        }
+   });
+
+   console.log(imgIndex)
+
     if (newUrl!=null){
       wx.navigateTo({
        // url: '../deviceImg/deviceImg?newUrl=' + newUrl,
-        url: '../deviceImg/deviceImg?dataset=' + JSON.stringify(e.currentTarget.dataset),
+        url: '../deviceImg/deviceImg?dataset=' + JSON.stringify(e.currentTarget.dataset) + '&imgArr=' + JSON.stringify(this.data.imgArr) + '&imgIndex=' + imgIndex,
         succes:function(e){
           console.log(e)
         },
@@ -382,10 +400,7 @@ Page({
         wx.hideLoading();
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
-        that.setData({
-          infoone: [{ "access_autoid": "2667", "access_device_id": "110000003", "access_value": "5", "access_time": "1511934560", "access_new_url": "normalup\/110000003\/20171129_134923_87.bmp" }, { "access_autoid": "2666", "access_device_id": "110000003", "access_value": "5", "access_time": "1511848070", "access_new_url": "normalup\/110000003\/20171128_134753_76.bmp" }, { "access_autoid": "2665", "access_device_id": "110000003", "access_value": "4", "access_time": "1511761581", "access_new_url": "normalup\/110000003\/20171127_134623_94.bmp" }, { "access_autoid": "2664", "access_device_id": "110000003", "access_value": "4", "access_time": "1511675094", "access_new_url": "normalup\/110000003\/20171126_134456_47.bmp" }, { "access_autoid": "2663", "access_device_id": "110000003", "access_value": "4", "access_time": "1511588599", "access_new_url": "normalup\/110000003\/20171125_134321_12.bmp" }
-          ]
-        });
+        
         for (var i = 0; i < that.data.infoone.length; i++) {
           that.data.infoone[i].timesto = formatTime(that.data.infoone[i].access_time, 'Y-M-D h:m:s'),
             that.data.infoone[i].dateto = formatTime(that.data.infoone[i].access_time, 'Y-M-D')

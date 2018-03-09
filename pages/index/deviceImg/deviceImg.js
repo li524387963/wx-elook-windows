@@ -12,25 +12,71 @@ Page({
     width: width,
     height: height,
     imgurl:null,
+    imgArr:[],
+    imgIndex:null,
+    lastX: 0,
+    lastY: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.dataset)
+    console.log(options.dataset,options.imgIndex)
     var data = JSON.parse(options.dataset)
-    var imgurl = service_Url+data.newurl
+    var imgArr = JSON.parse(options.imgArr)
+    console.log(imgArr)
+    var imgIndex = options.imgIndex
+    var imgurl = service_Url+'nbiot/'+data.newurl
     console.log(imgurl)
     this.setData({
       dataset:data,
-      imgurl: imgurl
+      imgurl: imgurl,
+      imgArr: imgArr,
+      imgIndex: imgIndex
     })
     console.log(height)
     wx.setNavigationBarTitle({
       
       title: data.timesto })
   },
+
+  handletouchmove: function (event) {
+    console.log(event)
+    let currentX = event.touches[0].pageX
+    let currentY = event.touches[0].pageY
+
+    console.log(currentX)
+    console.log(this.data.lastX)
+    let text = ""
+    if ((currentX - this.data.lastX) < 0){
+      console.log("zuo")
+    }
+    
+
+    else if (((currentX - this.data.lastX) > 0)){
+      console.log("向右滑动")
+    }
+  
+
+    //将当前坐标进行保存以进行下一次计算
+    this.data.lastX = currentX
+    this.data.lastY = currentY
+    this.setData({
+      text: text,
+    });
+  },
+
+  handletouchtart: function (event) {
+    
+    this.data.lastX = event.touches[0].pageX
+    this.data.lastY = event.touches[0].pageY
+  },
+  handletap: function (event) {
+  
+  },
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
