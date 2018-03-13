@@ -122,10 +122,11 @@ Page({
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
         var status_code = res.data.UserInfo.ret.status_code;
-        let deviceModel = JSON.stringify(res.data.UserInfo.ret.data);
-        console.log(res.data.UserInfo.ret.data.device_dev_state)
+       
+       
 
         if (status_code === 10000312) {
+          let deviceModel = JSON.stringify(res.data.UserInfo.ret.data);
           if (res.data.UserInfo.ret.data.device_dev_state == 5 || res.data.UserInfo.ret.data.device_dev_state == 9 || res.data.UserInfo.ret.data.device_dev_state == 10){
             wx.switchTab({
               url: '../index'

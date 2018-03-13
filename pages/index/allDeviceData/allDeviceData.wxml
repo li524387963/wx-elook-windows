@@ -18,7 +18,7 @@
 <scroll-view class='scrollView' scroll-y='true' style="height: {{scrollHeight+'px'}}" bindscrolltolower='bindscrolltolower'>
 <block wx:for="{{infoone}}" wx:key="scrollView">
 
-<view bindtap='tap' data-newurl='{{item.access_new_url}}'data-timesto='{{item.timesto}}'data-value='{{item.access_value}}' class='itemView'>
+<view bindtap='tap' data-access_new_url='{{item.access_new_url}}'data-timesto='{{item.timesto}}'data-access_value='{{item.access_value}}' class='itemView'>
 <text class='timeText'>{{item.timesto}}</text>
 <view class='valueView'>
   <view class='value'>

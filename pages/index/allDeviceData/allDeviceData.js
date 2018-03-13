@@ -34,15 +34,7 @@ Page({
     });
     var data = { deviceid: this.data.deviceId, aip: "ios",page:'1' }
     console.log(checkdev_URL)
-    
-    // for(var i = 0; i < this.data.infoone.length; i++) {
-
-    //   this.data.infoone[i].timesto = formatTime(this.data.infoone[i].access_time, 'Y-M-D h:m:s')
-    // } ;
-    // this.setData({
-    //   infoone: this.data.infoone
-    // });
-    
+  
    // console.log(this.data.infoone)
 
     this.request(checkdev_URL, data)
@@ -166,7 +158,7 @@ Page({
   tap:function(e){
     console.log(e)
     
-    var newUrl = e.currentTarget.dataset.newurl
+    var newUrl = e.currentTarget.dataset.access_new_url
     // var datae :{
     //    newUrl: newUrl,
     //    eid:e.currentTarget.dataset.eid
@@ -224,6 +216,9 @@ Page({
   onPullDownRefresh: function () {
     this.data.select = false;
     this.data.page = 1;
+    this.setData({
+      imgArr: []
+    });
    
     wx.showNavigationBarLoading();
     var data = { deviceid: this.data.deviceId, aip: "ios", page: '1' }
@@ -241,8 +236,11 @@ Page({
     
   },
   //加载更多
+  //
   bindscrolltolower:function(res){
    console.log(res);
+   
+
    var that = this
    if (that.data.page < that.data.pagenum) {
      that.data.page++;
@@ -285,17 +283,23 @@ Page({
              infoone: contentList
            });
            console.log(contentList)
-
+           that.setData({
+             imgArr: []
+           });
            for (var i = 0; i < contentList.length; i++) {
              that.data.infoone[i].timesto = formatTime(contentList[i].access_time, 'Y-M-D h:m:s')
              that.data.infoone[i].dateto = formatTime(contentList[i].access_time, 'Y-M-D')
+             if (that.data.infoone[i].access_new_url != null) {
+               
+               that.data.imgArr.push(that.data.infoone[i])
+             }
            };
            that.setData({
              infoone: that.data.infoone,
              endDate: that.data.infoone[0].dateto,
              startDate: that.data.infoone[that.data.infoone.length - 1].dateto,
            });
-           console.log(that.data.infoone)
+           console.log(that.data.infoone.length, that.data.imgArr.length)
          }else{
            contentList = that.data.infoone.concat(res.data.UserInfo.ret.info)
            that.setData({
@@ -307,6 +311,10 @@ Page({
 
            for (var i = 0; i < contentList.length; i++) {
              that.data.infoone[i].timesto = formatTime(contentList[i].access_time, 'Y-M-D h:m:s')
+             if (that.data.infoone[i].access_new_url != null) {
+
+               that.data.imgArr.push(that.data.infoone[i])
+             }
             
            };
            that.setData({
@@ -323,18 +331,7 @@ Page({
          wx.hideLoading();
          wx.hideNavigationBarLoading() //完成停止加载
          wx.stopPullDownRefresh() //停止下拉刷新
-         that.setData({
-           infoone: [{ "access_autoid": "2667", "access_device_id": "110000003", "access_value": "5", "access_time": "1511934560", "access_new_url": "normalup\/110000003\/20171129_134923_87.bmp" }, { "access_autoid": "2666", "access_device_id": "110000003", "access_value": "5", "access_time": "1511848070", "access_new_url": "normalup\/110000003\/20171128_134753_76.bmp" }, { "access_autoid": "2665", "access_device_id": "110000003", "access_value": "4", "access_time": "1511761581", "access_new_url": "normalup\/110000003\/20171127_134623_94.bmp" }, { "access_autoid": "2664", "access_device_id": "110000003", "access_value": "4", "access_time": "1511675094", "access_new_url": "normalup\/110000003\/20171126_134456_47.bmp" }, { "access_autoid": "2663", "access_device_id": "110000003", "access_value": "4", "access_time": "1511588599", "access_new_url": "normalup\/110000003\/20171125_134321_12.bmp" }
-           ]
-         });
-         for (var i = 0; i < that.data.infoone.length; i++) {
-           that.data.infoone[i].timesto = formatTime(that.data.infoone[i].access_time, 'Y-M-D h:m:s')
-         };
-         that.setData({
-           infoone: that.data.infoone,
-           
-         });
-         console.log(that.data.infoone)
+        
        }
      })
    } else {
@@ -347,6 +344,7 @@ Page({
 
 
   },
+
   requestSelect:function(url,data){
     var that = this
     console.log(data)
@@ -383,6 +381,10 @@ Page({
         } else {
           for (var i = 0; i < res.data.UserInfo.ret.info.length; i++) {
             that.data.infoone[i].timesto = formatTime(res.data.UserInfo.ret.info[i].access_time, 'Y-M-D h:m:s')
+            if (that.data.infoone[i].access_new_url != null) {
+
+              that.data.imgArr.push(that.data.infoone[i])
+            }
 
           };
           that.setData({
@@ -401,16 +403,6 @@ Page({
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
         
-        for (var i = 0; i < that.data.infoone.length; i++) {
-          that.data.infoone[i].timesto = formatTime(that.data.infoone[i].access_time, 'Y-M-D h:m:s'),
-            that.data.infoone[i].dateto = formatTime(that.data.infoone[i].access_time, 'Y-M-D')
-        };
-        that.setData({
-          infoone: that.data.infoone,
-          endDate: that.data.infoone[0].dateto,
-          startDate: that.data.infoone[that.data.infoone.length - 1].dateto,
-        });
-        console.log(that.data.infoone)
       }
 
     }) 

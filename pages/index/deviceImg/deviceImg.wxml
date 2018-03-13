@@ -1,8 +1,8 @@
 <!--pages/index/deviceImg/deviceImg.wxml-->
-<view class='imgView' bindtap = "handletap" bindtouchstart = "handletouchtart" bindtouchmove="handletouchmove">
+<view class='imgView' bindtap = "handletap" bindtouchstart = "handletouchtart"  bindtouchend='handletouchend'>
 
   <image src='{{imgurl}}' class='image' style="width:{{width+'px'}};height:{{height+'px'}}"></image>
    <text  class='timetext'>{{dataset.timesto}}</text>
-  <text  class='text'>{{dataset.value}}</text>
+  <text  class='text'>{{dataset.access_value}}</text>
 
 </view>

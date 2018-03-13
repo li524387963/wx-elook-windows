@@ -27,6 +27,7 @@
     "navigationBarBackgroundColor": "#007F9F",
     "navigationBarTitleText": "ELook",
     "navigationBarTextStyle": "white"
+    
   },
   "tabBar": {
     "color": "#ccc",

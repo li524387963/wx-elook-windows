@@ -27,7 +27,7 @@ Page({
     var imgArr = JSON.parse(options.imgArr)
     console.log(imgArr)
     var imgIndex = options.imgIndex
-    var imgurl = service_Url+'nbiot/'+data.newurl
+    var imgurl = service_Url + 'nbiot/' + data.access_new_url
     console.log(imgurl)
     this.setData({
       dataset:data,
@@ -41,30 +41,73 @@ Page({
       title: data.timesto })
   },
 
-  handletouchmove: function (event) {
+  handletouchend: function (event) {
     console.log(event)
-    let currentX = event.touches[0].pageX
-    let currentY = event.touches[0].pageY
+    let currentX = event.changedTouches[0].pageX
+    let currentY = event.changedTouches[0].pageY
 
     console.log(currentX)
     console.log(this.data.lastX)
-    let text = ""
+    
     if ((currentX - this.data.lastX) < 0){
       console.log("zuo")
+      if (this.data.imgArr.length-2 < this.data.imgIndex) {
+        console.log(this.data.imgIndex)
+      }else{
+
+      
+      this.data.imgIndex++
+      console.log(this.data.imgIndex)
+      var model = this.data.imgArr[this.data.imgIndex]
+      var imgurl = service_Url + 'nbiot/' + model.access_new_url
+      this.setData({
+        dataset: model,
+        imgurl: imgurl,
+
+      })
+      wx.setNavigationBarTitle({
+
+        title: model.timesto
+      })
+
+      }
     }
     
 
     else if (((currentX - this.data.lastX) > 0)){
       console.log("向右滑动")
+      if (this.data.imgIndex == 0) {
+        console.log('已经是第一个了')
+        console.log(this.data.imgIndex)
+        wx.showToast({
+          title: '已经是第一个了',
+          image: "../../../images/home_icon_orange@3x.png",
+          duration: 2000
+        });
+
+
+      } else {
+        this.data.imgIndex--
+        var model = this.data.imgArr[this.data.imgIndex]
+        var imgurl = service_Url + 'nbiot/' + model.access_new_url
+        this.setData({
+          dataset: model,
+          imgurl: imgurl,
+         
+        })
+        wx.setNavigationBarTitle({
+
+          title: model.timesto
+        })
+        console.log(this.data.imgIndex, model)
+      }
     }
   
 
     //将当前坐标进行保存以进行下一次计算
     this.data.lastX = currentX
     this.data.lastY = currentY
-    this.setData({
-      text: text,
-    });
+    
   },
 
   handletouchtart: function (event) {
@@ -73,7 +116,7 @@ Page({
     this.data.lastY = event.touches[0].pageY
   },
   handletap: function (event) {
-  
+
   },
 
 
