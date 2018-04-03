@@ -113,13 +113,29 @@ Page({
     
   },
   bindTap:function(){
-    var deviceModel = JSON.stringify(this.data.deviceModel)
+   
     
     // wx.navigateTo({
     //   url: '../bindFail/bindFail?deviceid=' + this.data.deviceModel.device_device_id + '&page=' + 1,
     // })
     //重新设置2 继续绑定
-    this.setStateAction();
+var that = this
+    wx.showModal({
+      title: '提示',
+      content: '是否重新配置设备',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          that.setStateAction();
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+
+
+
+    
 
   },
   setStateAction: function () {
@@ -158,8 +174,12 @@ Page({
 
 
         } else {
+          var deviceModel = JSON.stringify(that.data.deviceModel)
         wx.navigateTo({
-       url: '../bindFail/bindFail?deviceid=' + that.data.deviceModel.device_device_id + '&page=' + 1,
+      //  url: '../bindFail/bindFail?deviceid=' + that.data.deviceModel.device_device_id + '&page=' + 1,
+          url: '../configDevice/configDevice?deviceModel=' + deviceModel ,
+
+
      })
 
 

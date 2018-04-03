@@ -59,7 +59,7 @@
    <image src='../../images/home_icon_1@3x.png' class='locaimg'></image>
    <text wx:if="{{item.device_alias ==null}}" class='locatext' style="width:{{screenWidth/5+5+'px'}}"> 暂无位置信息 </text>
    <text wx:else class='locatext'style="width:{{screenWidth/5+5+'px'}}">{{item.device_location}}</text>
-    <view class='stateView' wx:if='{{item.device_dev_state!=5&&item.device_dev_state!=9}}'>
+    <view class='stateView' wx:if='{{item.device_dev_state!=5&&item.device_dev_state!=9&&item.device_dev_state!=10}}'>
       <image src='../../images/home_icon_orange@3x.png'></image>
       <text id='{{item.device_dev_state}}' catchtap='stateTap' wx:if='{{item.device_dev_state==4}}'data-model='{{item}}'>设备无法解析</text>
       <text id='{{item.device_dev_state}}' catchtap='stateTap'wx:elif='{{item.device_dev_state==6}}'data-model='{{item}}'>解析数值不匹配</text>

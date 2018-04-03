@@ -47,15 +47,26 @@
   color: rgb(17, 135, 165)
 }
 .buttonView{
-  align-items: center;
-  padding-right: 12px;
+    align-items: center;  
+ 
+   padding-right: 12px; 
+   height: 30px;
+  width: 75px;
+  
+  
 }
 .buttonView button{
   background-color: rgb(17, 135, 165);
   color: white;
   height: 30px;
-  width: 75px;
-  font-size: 14px;
+  width: 60px;
+  line-height: 30px;
+ font-size: 16px; 
+ 
+}
+.buttonView button text{
+  vertical-align: middle;
+  color: white;
 }
 .scrollView{
 

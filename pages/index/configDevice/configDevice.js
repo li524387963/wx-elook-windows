@@ -190,50 +190,95 @@ Page({
       
 
     })
+
     Countdown(this);
-    switch (this.data.state) {
-      case '0':
-        console.log(this.data.state)
-        this.connectNetWork();
-       
-        break;
-      case '1':
-        console.log(this.data.state)
-        this.setStateAction();
+    var data = this.data.deviceModel.device_device_id + '1'
 
-        break;
-      case "2":
-        
-        console.log(this.data.state)
-        this.setStateAction();
+    var that = this
+    wx.showLoading({
+      title: '请求中...',
+      icon: "loading",
+      duration: 1000
+    })
+    wx.request({
 
-        break;
-      case '4':
-        console.log(this.data.state)
-        this.setStateAction();
+      url: getDeviceState_URL,
+      header: {
+        'content-type': "application/x-www-form-urlencoded"
+      },
+      method: "POST",
+      data: data,
+      success: function (res) {
 
-        break;
-      case '5':
-        console.log(this.data.state)
-        this.bindSuccess();
+        var dataStr = res.data.substr(2, 1)
 
-        break;
-      case '6':
-        console.log(this.data.state)
-        this.setStateAction();
-        break;
-      case '9':
-        console.log(this.data.state)
-        this.bindSuccess();
-        break;
-      case 'A':
-        console.log(this.data.state)
-        this.bindSuccess();
-        break;
+        that.setData({
+          state: dataStr,
 
-      default:
-        break;
-    }
+        })
+        console.log(that.data.state)
+        switch (dataStr) {
+
+          case '0':
+            that.connectNetWork();
+           
+            break;
+          case '1':
+            that.setStateAction();
+           
+
+            break;
+          case "2":
+            that.setStateAction();
+           
+            console.log(dataStr)
+
+            break;
+          case '4':
+            that.setStateAction();
+           
+
+            break;
+          case '5':
+            that.bindSuccess();          
+          
+            break;
+          case '6':
+            that.setStateAction();
+           
+            break;
+          case '9':
+            that.bindSuccess();
+          
+          case 'A':
+            that.bindSuccess();
+          
+            break;
+
+          default:
+            break;
+        }
+
+
+      },
+
+      fail: function () {
+        wx.hideLoading();
+        wx.hideNavigationBarLoading() //完成停止加载
+        wx.stopPullDownRefresh() //停止下拉刷新
+        wx.showToast({
+          title: '网络连接失败',
+          image: "../../../images/home_icon_orange@3x.png",
+          duration: 2000
+        });
+      }
+
+    })
+
+
+
+    
+   
    
   },
   //getState 1
@@ -322,6 +367,8 @@ Page({
 
 
         }else{
+
+
           that.getDeviceState();
 
 
@@ -347,11 +394,7 @@ Page({
     var that = this
     that.setData({ text: "设备正在解析图片..." })
     that.data.getStateTimer = setInterval(function () {
-
       that.data.getStateCount++;
-
-
-
       that.setData({ getStateCount: that.data.getStateCount })
       //测试延迟加长
       if (that.data.getStateCount > 240) {
@@ -361,7 +404,6 @@ Page({
       } else {
         that.reciveStateData()
       }
-
 
     }, 3000)
   },
@@ -380,17 +422,15 @@ Page({
 
 
         var dataStr = res.data.substr(2, 1)
-        var countStr = res.data.substr(3, 1)
+       // var countStr = res.data.substr(3, 1)
 
-        console.log(dataStr, countStr)
+       // console.log(dataStr, countStr)
         if (dataStr != '2') {
           console.log("dataStr != '2'")
           clearInterval(that.data.getStateTimer)
           if (dataStr == "5"){
             //配置成功
             that.bindSuccess();
-
-
           }
           if (dataStr == "9") {
             //配置成功
@@ -399,8 +439,6 @@ Page({
           if (dataStr == "A") {
             //配置成功
             that.bindSuccess();
-           
-
           }
           if (dataStr == "4") {
             //配置失败
@@ -411,7 +449,7 @@ Page({
 
         }else{
           //查询次数
-          var cStr = "设备与服务器连接次数:"+countStr+'次'
+          var cStr = "设备与服务器连接次数:" + that.data.getStateCount+'次'
 
           that.setData({ text: cStr })
 
