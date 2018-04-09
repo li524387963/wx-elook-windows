@@ -296,7 +296,7 @@ Page({
 
     if (that.touchEndTime - that.touchStartTime <350){
      
-      console.log(res)
+     
       var deviceModel = JSON.stringify(res.currentTarget.dataset.model)
 
       wx.navigateTo({

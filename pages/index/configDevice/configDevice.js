@@ -519,7 +519,7 @@ Page({
 
 
       that.setData({ percent: that.data.percent })
-      if (that.data.percent > 90) {
+      if (that.data.percent > 98) {
         clearInterval(that.processTimer)
       }
 

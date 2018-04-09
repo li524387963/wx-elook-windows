@@ -16,6 +16,7 @@ Page({
     imgIndex:null,
     lastX: 0,
     lastY: 0,
+    deid:'',
   },
 
   /**
@@ -25,20 +26,29 @@ Page({
     console.log(options.dataset,options.imgIndex)
     var data = JSON.parse(options.dataset)
     var imgArr = JSON.parse(options.imgArr)
-    console.log(imgArr)
+    console.log(data,imgArr)
     var imgIndex = options.imgIndex
-    var imgurl = service_Url + 'nbiot/' + data.access_new_url
+    var deid = data.access_device_id.substr(0,1)
+    console.log(deid)
+    if (deid==1||deid==2){
+      var imgurl = service_Url  + data.access_new_url
+    }else{
+      var imgurl = service_Url + 'nbiot/' + data.access_new_url
+    }
+    
+
     console.log(imgurl)
     this.setData({
       dataset:data,
       imgurl: imgurl,
       imgArr: imgArr,
-      imgIndex: imgIndex
+      imgIndex: imgIndex,
+      deid:deid,
     })
     console.log(height)
     wx.setNavigationBarTitle({
       
-      title: data.timesto })
+      title:data.timesto })
   },
 
   handletouchend: function (event) {
@@ -59,7 +69,15 @@ Page({
       this.data.imgIndex++
       console.log(this.data.imgIndex)
       var model = this.data.imgArr[this.data.imgIndex]
-      var imgurl = service_Url + 'nbiot/' + model.access_new_url
+
+      
+      if (this.data.deid == 1 || this.data. deid == 2) {
+        var imgurl = service_Url + model.access_new_url
+      } else {
+        var imgurl = service_Url + 'nbiot/' + model.access_new_url
+      }
+
+      // var imgurl = service_Url + 'nbiot/' + model.access_new_url
       this.setData({
         dataset: model,
         imgurl: imgurl,
@@ -89,7 +107,12 @@ Page({
       } else {
         this.data.imgIndex--
         var model = this.data.imgArr[this.data.imgIndex]
-        var imgurl = service_Url + 'nbiot/' + model.access_new_url
+        if (this.data.deid == 1 || this.data.deid == 2) {
+          var imgurl = service_Url + model.access_new_url
+        } else {
+          var imgurl = service_Url + 'nbiot/' + model.access_new_url
+        }
+        // var imgurl = service_Url + 'nbiot/' + model.access_new_url
         this.setData({
           dataset: model,
           imgurl: imgurl,

@@ -47,13 +47,15 @@ Page({
     weekvalue:[],
     weekDate:[],
     deviceModel:{},
+    lastIndex:6,
+    accessday:null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+  //  console.log(options)
     let deviceModel = JSON.parse(options.deviceModel);
     this.setData({ deviceid: deviceModel.device_device_id, deviceModel: deviceModel });
     // this.setData({
@@ -316,9 +318,28 @@ var that = this
     
   },
   touchHandler: function (e) {
+    console.log(e)
     console.log(areaChart.getCurrentDataIndex(e));
     var index = areaChart.getCurrentDataIndex(e);
     areaChart.showToolTip(index);
+   // var lastindex = index ;
+   console.log(this.data.dayvalue)
+    if (index == this.data.lastIndex){
+      console.log(index, this.data.lastIndex)
+      if (this.data.dayvalue[index]!=null){
+        wx.navigateTo({
+          url: '../allDeviceData/allDeviceData?deviceId=' + this.data.deviceid + '&currentTime=' + this.data.accessday[index]
+
+       })
+        console.log(this.data.dayvalue[index], "跳转", this.data.accessday[index])
+      }
+    }else{
+      console.log(index, this.data.lastIndex,'buyiyang')
+    }
+    this.setData({
+      lastIndex:index
+    })
+
   }, 
   areaChart: function (windowWidth) {
     var max = Math.max.apply(Math, this.data.dayvalue);
@@ -548,7 +569,7 @@ var that = this
   },
   request: function (url, data) {
     var that = this
-    console.log(data)
+   // console.log(data)
     wx.showLoading({
       title: '加载中...',
       icon: "loading",
@@ -578,40 +599,43 @@ var that = this
 
           
           if(i==0){
-            console.log('0')
+          //  console.log('0')
             dayvalue7 =  res.data.UserInfo.ret.data[p]
           }
           if (i == 1) {
-            console.log('1')
+        //    console.log('1')
             weekvalue7 = res.data.UserInfo.ret.data[p]
 
           }
           if (i == 2) {
-            console.log('2')
+         //   console.log('2')
             monthvalue7 = res.data.UserInfo.ret.data[p]
 
           }
           if (i == 3) {
-            console.log('3')
+          //  console.log('3')
             yearvalue3 = res.data.UserInfo.ret.data[p]
           }
           i++
         }
-        console.log(yearvalue3)
+     //   console.log(yearvalue3)
         //日
        var dayDate = [];
        var dayvalue = [];
+       var accessday = [];
        for (var i=0; i< dayvalue7.length;i++){
          
         
            dayvalue.push(dayvalue7[i].value);
           
            dayDate.push(formatTime(dayvalue7[i].day, 'M.D'));
+           accessday.push(dayvalue7[i].day)
         
          
         }
-       console.log(dayDate, dayvalue);
+      // console.log(dayDate, dayvalue);
        dayDate.sort();
+       accessday.sort();
        dayvalue.reverse();
        
        var time = util.formatTime1(new Date()); 
@@ -619,8 +643,8 @@ var that = this
        if (dayDate[6] === time ){
          dayDate[6]='今日'
        }
-       console.log(dayDate);
-       console.log(dayvalue);
+   //    console.log(dayDate);
+     //  console.log(dayvalue);
       //周
        var weekDate = [];
        var weekvalue = [];
@@ -634,47 +658,47 @@ var that = this
          weekDate2.push(formatTime(weekvalue7[i].day + 6 * 24 * 60 * 60, 'M/D'));
          }
        }
-       console.log(weekDate,weekDate2,weekvalue);
+     //  console.log(weekDate,weekDate2,weekvalue);
        weekDate.sort();
        weekDate2.sort();
        weekvalue.reverse();
-       console.log(weekDate, weekDate2, weekvalue);
+     //  console.log(weekDate, weekDate2, weekvalue);
        var weekDate3 = [];
        for(var i=0;i<weekDate.length;i++){
          weekDate3.push(weekDate[i]+'-'+weekDate2[i])
        }
-       console.log(weekDate3)
+    //   console.log(weekDate3)
 
        //月
        var monthDate = [];
        var monthvalue = [];
        for (var i = 0; i < monthvalue7.length; i++) {
          if (i < 4) {
-           console.log(monthvalue7[i].day);
+          // console.log(monthvalue7[i].day);
            monthvalue.push(monthvalue7[i].value);
-           console.log(monthvalue7[i].value);
+         //  console.log(monthvalue7[i].value);
            monthDate.push(formatTime(monthvalue7[i].day, 'M月'));
          }
        }
-       console.log(monthDate, monthvalue);
+    //   console.log(monthDate, monthvalue);
        monthDate.reverse();
        monthvalue.reverse();
-       console.log(monthDate, monthvalue);
+      // console.log(monthDate, monthvalue);
        
        //年
        var yearDate = [];
        var yearvalue = [];
        for (var i = 0; i < yearvalue3.length; i++) {
-         console.log(yearvalue3[i].day);
+      //   console.log(yearvalue3[i].day);
          yearvalue.push(yearvalue3[i].value);
-         console.log(yearvalue3[i].value);
+      //   console.log(yearvalue3[i].value);
          yearDate.push(formatTime(yearvalue3[i].day, 'Y年'));
 
        }
-       console.log(yearDate, yearvalue);
+    //   console.log(yearDate, yearvalue);
        yearDate.sort();
        yearvalue.reverse();
-       console.log(yearDate, yearvalue);
+     //  console.log(yearDate, yearvalue);
 
       that.setData({
         yearvalue: yearvalue,
@@ -685,9 +709,10 @@ var that = this
         monthDate: monthDate,
         weekvalue: weekvalue,
         weekDate: weekDate3,
+        accessday : accessday,
       });
 
-      console.log(windowWidth);
+   //   console.log(windowWidth);
       that.areaChart(windowWidth);
      
 
@@ -708,7 +733,7 @@ var that = this
   },
   lookAllTap:function(){
     wx.navigateTo({
-      url: '../allDeviceData/allDeviceData?deviceId=' + this.data.deviceid
+      url: '../allDeviceData/allDeviceData?deviceId=' + this.data.deviceid + '&currentTime=' +null
 
     })
   },

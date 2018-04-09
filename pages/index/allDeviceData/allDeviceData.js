@@ -21,6 +21,7 @@ Page({
     select:false,
     info:[],
     imgArr: [],
+    currentTime:null
 
     
   },
@@ -30,14 +31,37 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      deviceId: options.deviceId
+      deviceId: options.deviceId,
+      currentTime: options.currentTime
     });
-    var data = { deviceid: this.data.deviceId, aip: "ios",page:'1' }
     console.log(checkdev_URL)
-  
-   // console.log(this.data.infoone)
 
-    this.request(checkdev_URL, data)
+    console.log(options.currentTime)
+    
+
+    if (options.currentTime=="null"){
+      wx.setNavigationBarTitle({
+
+        title:"全部列表"
+      })
+      var data = { deviceid: this.data.deviceId, aip: "ios", page: '1' }
+      
+      this.request(checkdev_URL, data)
+    }else{
+      wx.setNavigationBarTitle({
+        title: "本日列表"
+      })
+
+      var start = formatTime(options.currentTime, 'Y-M-D')
+
+      var tomorrow_timetamp = parseInt(options.currentTime) + 24 * 60 * 60;
+
+      var end = formatTime(tomorrow_timetamp, 'Y-M-D')        
+      var data = { deviceid: this.data.deviceId, aip: "ios", page: '1', start: start, end: end }
+      console.log(data)
+      
+      this.requestSelect(devtime_Select_Url, data)
+    }
     
     
   },
@@ -91,10 +115,18 @@ Page({
            
             that.data.imgArr.push(that.data.infoone[i])
           }
+         
           };
+        
+        
+          var tomorrow_timetamp = parseInt (res.data.UserInfo.ret.infoone[0].access_time) + 24 * 60 * 60;
+        
+          var endDate = formatTime(tomorrow_timetamp, 'Y-M-D')
+          console.log(endDate)
+
           that.setData({
             infoone: that.data.infoone,
-            endDate: that.data.infoone[0].dateto,
+            endDate: endDate,
             startDate: that.data.infoone[that.data.infoone.length - 1].dateto,
 
           });
@@ -139,8 +171,7 @@ Page({
   },
   //查询
   bindtap:function(e){
-    this.data.select = true;
-    this.data.page = 1;
+   
     var start = null;
     var end = null;
     if (this.data.startDate >= this.data.endDate){
@@ -152,6 +183,7 @@ Page({
       end = this.data.endDate
     }
     var data = { deviceid: this.data.deviceId, aip: "ios", page: '1', start: start, end: end }
+    console.log(data)
     this.requestSelect(devtime_Select_Url, data)
 
   },
@@ -215,14 +247,35 @@ Page({
    */
   onPullDownRefresh: function () {
     this.data.select = false;
+    // this.setData({
+    //   select: false
+    // })
     this.data.page = 1;
     this.setData({
       imgArr: []
     });
    
     wx.showNavigationBarLoading();
-    var data = { deviceid: this.data.deviceId, aip: "ios", page: '1' }
-    this.request(checkdev_URL, data)
+    // var data = { deviceid: this.data.deviceId, aip: "ios", page: '1' }
+    // this.request(checkdev_URL, data)
+
+    if (this.data.currentTime == "null") {
+      
+      var data = { deviceid: this.data.deviceId, aip: "ios", page: '1' }
+
+      this.request(checkdev_URL, data)
+    } else {
+    
+      var start = formatTime(this.data.currentTime, 'Y-M-D')
+
+      var tomorrow_timetamp = parseInt(this.data.currentTime) + 24 * 60 * 60;
+
+      var end = formatTime(tomorrow_timetamp, 'Y-M-D')
+      var data = { deviceid: this.data.deviceId, aip: "ios", page: '1', start: start, end: end }
+      console.log(data)
+
+      this.requestSelect(devtime_Select_Url, data)
+    }
     
   },
 
@@ -346,6 +399,8 @@ Page({
   },
 
   requestSelect:function(url,data){
+    this.data.select = true;
+    this.data.page = 1;
     var that = this
     console.log(data)
     wx.showLoading({
