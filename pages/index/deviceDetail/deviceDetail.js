@@ -100,14 +100,14 @@ Page({
     const ctx = wx.createCanvasContext('bgCanvas')
 
     // Create linear gradient
-    const grd = ctx.createLinearGradient(windowWidth / 2, 0, windowWidth / 2, 180)
+    const grd = ctx.createLinearGradient(windowWidth / 2, 0, windowWidth / 2, 200)
     grd.addColorStop(0, 'rgb(0,179,211)')
     grd.addColorStop(0.5, 'rgb(0,107,166)')
     grd.addColorStop(1, 'rgb(1,29,89)')
 
     // Fill with gradient
     ctx.setFillStyle(grd)
-    ctx.fillRect(0, 0, windowWidth, 180)
+    ctx.fillRect(0, 0, windowWidth, 200)
     ctx.draw()
 
 
@@ -344,6 +344,12 @@ var that = this
   areaChart: function (windowWidth) {
     var max = Math.max.apply(Math, this.data.dayvalue);
    
+    if(max<2){
+       max = 2;
+    }
+   
+    
+   
     areaChart = new wxCharts({
       canvasId: 'areaCanvas',
       type: 'area',
@@ -355,8 +361,8 @@ var that = this
       series: [{
 
         data: this.data.dayvalue,
-        //data: [9, 88, 889, 4321, 98765,-66666,-99999],
-      
+       
+        
         format: function (val) {
           return val.toFixed(0);
         },
@@ -367,10 +373,11 @@ var that = this
       yAxis: {
 
         format: function (val) {
-          return val.toFixed(0);
+          return val.toFixed(2);
         },
         min: 0,
         max:max/4+max,
+       
        
         fontColor: 'white',
         gridColor: 'white',
@@ -398,8 +405,11 @@ var that = this
   },
   columnChart: function (windowWidth) {
     var max = Math.max.apply(Math, this.data.weekvalue);
+    if (max < 2) {
+      max = 2;
+    }
     columnChart = new wxCharts({
-      canvasId: 'columnCanvas',
+      canvasId: 'columnCanvas', 
       type: 'column',
       animation: true,
 
@@ -407,21 +417,29 @@ var that = this
       series: [{
 
         color: 'white',
-        data: this.data.weekvalue,
+          data: this.data.weekvalue,
+        
+
    
         format: function (val, name) {
           return val.toFixed(0);
         }
       }],
       yAxis: {
+        
         format: function (val) {
-          return val.toFixed(0);
+          
+         
+          return val.toFixed(2);
         },
         fontColor: 'white',
         gridColor: 'white',
         titleFontColor: '#f7a35c',
-        min: 0,
+         min: 0,
+        
         max:max/4+max,
+        
+        
         
        
       },
@@ -442,6 +460,9 @@ var that = this
   },
   yearChart: function (windowWidth) {
     var max = Math.max.apply(Math, this.data.yearvalue);
+    if (max < 2) {
+      max = 2;
+    }
     columnChart = new wxCharts({
       canvasId: 'yearCanvas',
       type: 'column',
@@ -459,13 +480,13 @@ var that = this
       }],
       yAxis: {
         format: function (val) {
-          return val.toFixed(0);
+          return val.toFixed(2);
         },
         fontColor: 'white',
         gridColor: 'white',
         titleFontColor: '#f7a35c',
         min: 0,
-        max:max,
+        max:max/4+max,
        
       },
       xAxis: {
@@ -485,6 +506,9 @@ var that = this
   },
   monthChart: function (windowWidth) {
     var max = Math.max.apply(Math, this.data.monthvalue);
+    if (max < 2) {
+      max = 2;
+    }
     columnChart = new wxCharts({
       canvasId: 'monthCanvas',
       type: 'column',
@@ -502,7 +526,7 @@ var that = this
       }],
       yAxis: {
         format: function (val) {
-          return val.toFixed(0);
+          return val.toFixed(2);
         },
         fontColor: 'white',
         gridColor: 'white',
