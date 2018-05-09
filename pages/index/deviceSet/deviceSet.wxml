@@ -27,8 +27,14 @@
 <view class='lineView'style="width:{{width+'px'}}"></view>
 
 <view class='stateView'style="width:{{screenWidth+'px'}}">
-<text >每日数据是否显示图片</text>
- <switch checked='{{checked}}' bindchange='switchLimit' class='switch' style="padding-left:{{screenWidth-200-12-12-50+'px'}}" ></switch>
+<text >数据显示样式</text>
+ <!-- <switch checked='{{checked}}' bindchange='switchLimit' class='switch' style="padding-left:{{screenWidth-200-12-12-50+'px'}}" ></switch> -->
+ <picker bindchange="imgpickerChange" value="{{index}}" range="{{pickArray}}" >
+    <view class="picker" style="width:{{screenWidth-140-12-12-12-12-12+'px'}}">{{pickArray[imgIndex]}}
+    </view>
+  </picker>
+  <image src='../../../images/形状-14-拷贝-3@3x.png' class='rowImg' ></image>
+
 </view>
 
 <view class='lineView'style="width:{{width+'px'}}"></view>

@@ -65,10 +65,6 @@ Page({
         if (state=='4'){
           that.setData({ loseText: '比对失败' });
         }
-      
-
-
-
       },
 
       fail: function () {

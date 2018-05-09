@@ -51,11 +51,11 @@
  <switch checked='true' bindchange='switchLimit' class='switch'  ></switch>
  </view>
  <view class='lineView'style="width:{{screenWidth - 12 +'px'}}"></view>
-
+ 
    <view class='limitView'>
  <text class='leftText'>无使用提醒</text>
  <text class='switchText' style="width:{{screenWidth - 12-80-10-10-50-12 +'px'}}">3日无数字变化</text>
- <switch checked='true' bindchange='switchLimit' class='switch'  ></switch>
+ <switch checked='true' bindchange='switchLimit' class='switch'></switch>
  </view>
  <view class='blineView'style="width:{{screenWidth  +'px'}}"></view>
 

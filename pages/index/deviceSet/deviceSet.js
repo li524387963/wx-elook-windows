@@ -27,10 +27,9 @@ Page({
     upl_state:'0',
     location:'',
     page:'',
-    
-    
-    
-    
+    pickArray: ['正常', '显示图片', '显示log','全部'],
+    imgIndex:0,
+     
   },
 
   /**
@@ -93,6 +92,30 @@ Page({
    
     
   },
+  imgpickerChange:function(e){
+    console.log(e.detail.value)
+    this.setData({
+      imgIndex: e.detail.value
+    })
+    var that = this
+    switch (parseInt(that.data.imgIndex)) {
+      case 0:
+        that.setData({ upl_state: '0' })
+        break;
+      case 1:
+        that.setData({ upl_state: '1' })
+        break;
+      case 2:
+        that.setData({ upl_state: '2' })
+        break;
+      case 3:
+        that.setData({ upl_state: '3' })
+        break;
+
+
+    }
+    console.log(that.data.upl_state)
+  },
   requestdeviceModel: function (url, data) {
     var that = this
     wx.showLoading({
@@ -126,13 +149,27 @@ Page({
          that.setData({ alis: res.data.UserInfo.info.device_alias })
        }
        var checkStr = res.data.UserInfo.info.device_upl_state
-       if (checkStr==null){
-         that.setData({ checked: false, upl_state:'0' })
+      //  if (checkStr==null){
+      //    that.setData({ checked: false, upl_state:'0' })
+      //  } else if (checkStr =='0'){
+      //    that.setData({ checked: false, upl_state: '0' })
+      //  }else{
+      //    that.setData({ checked: true, upl_state: '1' })
+      // }
+       
+         if (checkStr==null){
+           that.setData({ imgIndex: 0, upl_state:'0' })
        } else if (checkStr =='0'){
-         that.setData({ checked: false, upl_state: '0' })
-       }else{
-         that.setData({ checked: true, upl_state: '1' })
-       }
+           that.setData({ imgIndex: 0, upl_state: '0' })
+         } else if (checkStr == '1'){
+           that.setData({ imgIndex: 1, upl_state: '1' })
+         } else if (checkStr == '2') {
+           that.setData({ imgIndex: 2, upl_state: '2' })
+         }
+         else if (checkStr == '3') {
+           that.setData({ imgIndex: 3, upl_state: '3' })
+         }
+           
        var locaStr = res.data.UserInfo.info.device_location
       
        if (locaStr==null){

@@ -65,7 +65,7 @@
   align-items: center;
 }
 .stateView text{
-  width: 200px;
+  width: 140px;
   padding-left: 13px;
   color: black;
   font-size: 16px;
