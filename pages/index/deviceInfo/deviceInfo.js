@@ -57,9 +57,6 @@ Page({
           endusername: res.data.enduser_phone_name,
           
         })
-        
-
-
       },
 
     })

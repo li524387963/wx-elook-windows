@@ -27,7 +27,7 @@
   </view>
    <view class='rightView'>
    <text class='deviceIDtext'>水表 {{ item.device_device_id}}</text>
-   <text class='yesvalue'> 昨日使用:{{item.yesterday}} 一周总数:{{item.weekvalue}}</text>
+   <text class='yesvalue'> 昨日使用:{{item.yesterday}} 一周总数:{{item.weekvalue}} 温度:{{item.device_mtemp}} 信号:{{item.device_signal}}</text>
    <view class='numberView' style="flex-direction:row;">
 <image src='../../images/home_bg_text@3x.png' class='bgtextimg'></image>
     <text class='bgtext'>当前读数</text>
